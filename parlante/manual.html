@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual — Parlante - Audio Waveform Editor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo">Parlante - Audio Waveform Editor</a>
+      <div class="nav-links">
+        <a href="index.html">App</a>
+        <a href="manual.html">Manual</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <h1 class="hero-title">Manual</h1>
+    <p class="manual-intro">
+      This manual describes all major functions, supported formats, specifications, advanced settings, menus, and keyboard shortcuts for Audio Waveform Editor. The app is a native macOS audio editor with tile-based waveform display, selection-based editing, and export to multiple formats.
+    </p>
+
+    <nav class="toc">
+      <p class="toc-title">Contents</p>
+      <ul class="toc-list">
+        <li><a href="#import-export">Import &amp; export formats</a></li>
+        <li><a href="#specifications">Specifications</a></li>
+        <li><a href="#interface">Interface &amp; views</a></li>
+        <li><a href="#playback">Playback &amp; navigation</a></li>
+        <li><a href="#selection">Selection &amp; handles</a></li>
+        <li><a href="#edit">Edit operations</a></li>
+        <li><a href="#extract-export">Extract &amp; export</a></li>
+        <li><a href="#advanced">Advanced settings</a></li>
+        <li><a href="#menus">Menu reference</a></li>
+        <li><a href="#shortcuts">Shortcut library</a></li>
+      </ul>
+    </nav>
+
+    <!-- IMPORT / EXPORT FORMATS -->
+    <section id="import-export" class="manual-section">
+      <h2>Import &amp; export formats</h2>
+
+      <h3>Legal import formats</h3>
+      <p>You can open the following file types via File → Open (⌘O), drag-and-drop, or the toolbar Open button.</p>
+      <ul class="spec-list">
+        <li><span class="spec-name">MP3</span> — MPEG-1/2 Layer 3 audio</li>
+        <li><span class="spec-name">WAV</span> — Waveform audio (PCM)</li>
+        <li><span class="spec-name">AIFF</span> — Audio Interchange File Format</li>
+        <li><span class="spec-name">M4A / MPEG-4 Audio</span> — AAC and similar codecs in MP4 container</li>
+        <li><span class="spec-name">FLAC</span> — Free Lossless Audio Codec</li>
+        <li><span class="spec-name">Movie / QuickTime</span> — Video files; the app extracts the audio track for editing (formats supported by AVFoundation)</li>
+      </ul>
+      <p>Multiple files can be selected at once; they are merged into a single document with optional silence between them (configurable in Advanced Settings).</p>
+
+      <h3>Export formats</h3>
+      <p>Export and Extract use the format and options set in Settings → Export. The following output formats are supported:</p>
+      <ul class="spec-list">
+        <li><span class="spec-name">WAV</span> — Uncompressed PCM; supports 8, 16, 24, 32 bit depth and configurable sample rate and channels</li>
+        <li><span class="spec-name">AIFF</span> — Uncompressed; same bit depth and sample rate options as WAV</li>
+        <li><span class="spec-name">MP3</span> — Compressed; bitrate selectable (96–320 kbps)</li>
+        <li><span class="spec-name">M4A</span> — Compressed (AAC); bitrate selectable</li>
+        <li><span class="spec-name">FLAC</span> — Lossless compressed; bit depth and sample rate options</li>
+      </ul>
+      <p>When <strong>Lossless extraction</strong> is enabled for an unedited MP3 source, the app can export by copying original MP3 frames (no re-encode). In that case only MP3 export is used and format/sample-rate/bit-depth controls are disabled.</p>
+    </section>
+
+    <!-- SPECIFICATIONS -->
+    <section id="specifications" class="manual-section">
+      <h2>Specifications</h2>
+
+      <h3>Export format options</h3>
+      <ul>
+        <li><strong>Sample rate</strong> — Match source, or 8000, 11025, 16000, 22050, 32000, 44100, 48000, 88200, 96000 Hz</li>
+        <li><strong>Bit depth</strong> (WAV, AIFF, FLAC) — Match source, or 8, 16, 24, 32 bit</li>
+        <li><strong>Bitrate</strong> (MP3, M4A) — 96, 128, 160, 192, 256, 320 kbps</li>
+        <li><strong>Channels</strong> — Match source, Mono, Stereo, Left only, Right only, Mid only (L+R)/2, Side only (L−R)/2</li>
+      </ul>
+
+      <h3>Naming &amp; location</h3>
+      <ul>
+        <li><strong>Export directory</strong> — Default is same folder as source file; or set a preferred folder in Export settings (stored as a security-scoped bookmark).</li>
+        <li><strong>Filename suffix</strong> — Applied to exported/extracted names (e.g. <code class="mono">_extract</code>).</li>
+        <li><strong>Unique names</strong> — Counter (file_1, file_2) or Timestamp to avoid overwriting.</li>
+      </ul>
+    </section>
+
+    <!-- INTERFACE & VIEWS -->
+    <section id="interface" class="manual-section">
+      <h2>Interface &amp; views</h2>
+
+      <h3>Main window layout</h3>
+      <p>From top to bottom: <strong>Header toolbar</strong>, <strong>Waveform display area</strong> (with optional mini waveform overview above it), <strong>Selection info bar</strong>, and optionally the <strong>Edit operations</strong> toolbar.</p>
+
+      <h3>Header toolbar</h3>
+      <ul>
+        <li><span class="term">Open</span> — Opens file picker (⌘O).</li>
+        <li><span class="term">Transport</span> — Play/Pause (Space), Play selection only (⌥Space), Stop (⌘.). Volume control is on the right.</li>
+        <li><span class="term">Zoom controls</span> — Zoom in/out, reset zoom, zoom to selection (⌘\).</li>
+        <li><span class="term">Waveform view mode</span> (stereo only) — Switch between Left/Right channels and Mid/Side (⌘⌥L / ⌘⌥S).</li>
+      </ul>
+
+      <h3>Waveform display area</h3>
+      <p>The main waveform is drawn with Metal (GPU), using a tile-based cache so zoom and pan stay smooth. You can:</p>
+      <ul>
+        <li><strong>Click-drag</strong> on the waveform to set a selection.</li>
+        <li><strong>Scroll / trackpad</strong> to pan and zoom (behavior can be selection-centered in View options).</li>
+        <li>When <strong>scrubbing</strong> is enabled (⌘J), drag horizontally to scrub through audio (optional turntable-style velocity scrubbing in Playback menu).</li>
+      </ul>
+      <p><strong>Visual elements:</strong> Waveform (customizable color), selection overlay (color and opacity in Appearance), red playhead line, yellow split-point markers (when splits are added). In scrubbing mode, the scrubbing indicator uses the scrubbing color (default purple).</p>
+
+      <h3>Mini waveform overview</h3>
+      <p>An optional strip above the main waveform shows the full file; the visible time range is highlighted. Toggle with View → Show/Hide Mini Waveform (⌘⇧M). Height is adjustable in preferences.</p>
+
+      <h3>Selection info bar &amp; handles</h3>
+      <p>When a selection exists, the bar below the waveform shows:</p>
+      <ul>
+        <li><strong>Start / End time fields</strong> — Monospaced; editable for precise selection. ⌘⌥1 jumps focus to the start field.</li>
+        <li><strong>Clear</strong> — Clears selection (same as Escape or ⌘⇧A).</li>
+        <li><strong>Split</strong> — Adds a split point at the playhead (⌘P). Split points divide the selection into segments for multi-part extract.</li>
+        <li><strong>Snap to zero crossings</strong> — Optional button; or use Edit → Snap Selection to Zero Crossings (⌘⌥Z) to avoid clicks at boundaries.</li>
+        <li><strong>Loop</strong> — Toggle loop playback over selection (⌘L).</li>
+        <li><strong>Extract</strong> — Export selection to a new file (⌘E). Command-click or use ⌘⇧E to extract and open in a new window.</li>
+      </ul>
+      <p><strong>Selection handles:</strong> The selection has left and right edges. You can drag these edges to adjust the range. When <strong>Dual Edit Mode</strong> is enabled (experimental), modifier+drag on the handles adjusts varispeed (time stretch) or gain (see Edit menu and Shortcut library). Lock selection (⌘⇧L) to prevent accidental moves; when locked, split points and boundary moves are disabled until you unlock.</p>
+    </section>
+
+    <!-- PLAYBACK & NAVIGATION -->
+    <section id="playback" class="manual-section">
+      <h2>Playback &amp; navigation</h2>
+
+      <ul>
+        <li><span class="term">Play / Pause</span> — Space. Plays from playhead; if “Play selection only” is used (⌥Space), playback is limited to the selection and can auto-center the view (toggle in View menu).</li>
+        <li><span class="term">Stop</span> — ⌘. stops playback; Enter stops and seeks to start.</li>
+        <li><span class="term">Seek to start/end</span> — Home / End.</li>
+        <li><span class="term">Seek by step</span> — Left/Right arrows move by the current <strong>movement precision</strong> (Playback → Movement Precision or ⌥1–⌥9). Option+Left/Right cycles the precision level.</li>
+        <li><span class="term">Pan viewport</span> — ⇧← / ⇧→. Viewport zoom: ⇧↑ zoom in, ⇧↓ zoom out (centered on viewport).</li>
+        <li><span class="term">Playhead follow</span> — When enabled (⌘⇧F), the view scrolls to keep the playhead visible during playback.</li>
+        <li><span class="term">Scrubbing</span> — ⌘J toggles scrub mode; then drag on the waveform to hear the audio at the drag position. Optional turntable mode (Playback → Enable Turntable Mode) uses drag velocity for scrub speed. Scrubbing preview duration is set in Advanced Settings.</li>
+        <li><span class="term">Varispeed</span> — If enabled in Advanced Settings, the varispeed control (e.g. in header or dedicated control) changes playback speed/pitch without editing the file. Range and step mode (percentage, musical semitones, or movement precision) are configurable.</li>
+      </ul>
+    </section>
+
+    <!-- SELECTION -->
+    <section id="selection" class="manual-section">
+      <h2>Selection &amp; handles</h2>
+
+      <h3>Creating and changing selection</h3>
+      <ul>
+        <li>Click-drag on the waveform to set a new selection.</li>
+        <li>⌘A selects the entire file.</li>
+        <li>Escape or ⌘⇧A clears the selection.</li>
+        <li>⌘1 / ⌘2 set selection start or end to the current playhead position.</li>
+        <li>[ and ] seek to selection start and end.</li>
+        <li>⌘⇧← / ⌘⇧→ move the selection <em>start</em> by the movement precision; ⌘⌥← / ⌘⌥→ move the selection <em>end</em>.</li>
+      </ul>
+
+      <h3>Lock, splits, zero crossings</h3>
+      <ul>
+        <li><strong>Lock selection</strong> (⌘⇧L) — Locks the selection and split points so they can’t be moved or deleted until unlocked. Useful before doing multiple operations.</li>
+        <li><strong>Split points</strong> — ⌘P adds a split at the playhead; ⌘⇧P clears all splits. Shift+click on a split removes it. Splits divide the selection into segments (e.g. for “Extract” producing multiple files or segments). “Split by longest segment” and “Redistribute splits equally” are in the Selection menu.</li>
+        <li><strong>Snap to zero crossings</strong> (⌘⌥Z) — Moves selection start and end to the nearest zero crossing to reduce clicks at edit boundaries. Optional “Snap to zero crossing” in preferences can affect other operations.</li>
+      </ul>
+
+      <h3>Channel selection (stereo)</h3>
+      <p>When a selection is active, Playback → Channels (or ⇧1/2/0/3/4) sets which channel(s) the selection refers to: Left, Right, Both, Mid (L+R)/2, or Side (L−R)/2. This affects which channels are used for edit and export when channel configuration is “match source” or when exporting specific channel options.</p>
+    </section>
+
+    <!-- EDIT OPERATIONS -->
+    <section id="edit" class="manual-section">
+      <h2>Edit operations</h2>
+      <p>Edit operations require “Enable Edit Operations” in Settings (Experimental). The edit toolbar can be shown/hidden with View → Toggle Edit Operations (⌘⌥E).</p>
+
+      <h3>Clipboard &amp; delete</h3>
+      <ul>
+        <li><span class="term">Copy</span> (⌘C) — Copies the selection to the internal clipboard.</li>
+        <li><span class="term">Cut</span> (⌘X) — Copies and removes the selection.</li>
+        <li><span class="term">Paste</span> (⌘V) — Pastes at playhead (or at selection / over selection / replace selection, depending on Edit → Paste Behaviour).</li>
+        <li><span class="term">Delete</span> (⌘⌫) — Removes the selection (no clipboard).</li>
+        <li><span class="term">Duplicate</span> (⌘D) — Inserts a copy of the selection immediately after the selection.</li>
+      </ul>
+
+      <h3>Processing</h3>
+      <ul>
+        <li><span class="term">Silence</span> (⌘⇧S) — Replaces selection with silence, or inserts silence before selection (Edit → Silence Operation).</li>
+        <li><span class="term">Fade In / Fade Out</span> (⌘⇧G / ⌘⇧H) — Apply fade; curve is chosen in Edit → Fade Curve (linear, logarithmic, exponential, S-curve).</li>
+        <li><span class="term">Normalize</span> (⌘⇧N) — Normalizes the selection to maximum level without clipping.</li>
+        <li><span class="term">Invert phase</span> (⌘⇧I) — Inverts the phase of the selection.</li>
+        <li><span class="term">Reverse</span> (⌘⇧R) — Reverses the selection in time.</li>
+        <li><span class="term">Trim to selection</span> — Keeps only the selection and discards the rest of the file (available from the edit toolbar).</li>
+      </ul>
+
+      <h3>Dual Edit Mode (varispeed + gain)</h3>
+      <p>When enabled (experimental), ⌘⌥V or ⌘⌥↑/↓ enters Dual Edit Mode on the current selection. In this mode:</p>
+      <ul>
+        <li><strong>Keyboard:</strong> Left/Right arrows adjust varispeed (time stretch); Up/Down adjust gain. Return commits, Escape cancels.</li>
+        <li><strong>Trackpad:</strong> ⌘⌥+drag on selection handles adjusts varispeed; Shift+drag adjusts gain. Changes commit on release. Snap to grid is optional (Edit → Dual Mode → Snap to Grid).</li>
+      </ul>
+      <p>Dual mode maximum gain and resize (semitones) are set in Advanced Settings. Step mode (percentage, musical, or movement precision) is in Edit → Dual Mode and Edit → Movement Precision.</p>
+
+      <h3>Undo / Redo</h3>
+      <p>⌘Z Undo and ⌘⇧Z Redo apply to edit operations when Edit Operations are enabled.</p>
+    </section>
+
+    <!-- EXTRACT & EXPORT -->
+    <section id="extract-export" class="manual-section">
+      <h2>Extract &amp; export</h2>
+
+      <h3>Extract selection</h3>
+      <p>Extract writes the current selection (or each segment between split points) to a new file using the format and options in Settings → Export. ⌘E extracts; ⌘⇧E extracts and opens the new file in the editor.</p>
+      <p>Extract options (in Export settings): normalize before extract, add short fades to avoid clicks, apply varispeed to export (if varispeed is enabled), copy source metadata (MP3/M4A only), and for unedited MP3 — lossless extraction (copy frames without re-encoding).</p>
+
+      <h3>Export</h3>
+      <p>“Export” typically refers to the same engine as Extract: the chosen time range (e.g. full file or selection) is written using the selected format, sample rate, bit depth/bitrate, and channel configuration. Export directory, filename suffix, and uniqueness (counter/timestamp) are configured in the Export section of Settings.</p>
+    </section>
+
+    <!-- ADVANCED SETTINGS -->
+    <section id="advanced" class="manual-section">
+      <h2>Advanced settings</h2>
+      <p>Open Settings with ⌘,. Tabs typically include: General, Export, Appearance, and Advanced (or similarly named).</p>
+
+      <h3>General</h3>
+      <ul>
+        <li>Last used open/export folders (and export directory bookmark).</li>
+        <li>Merge silence duration between merged files (Advanced → Merge Operations).</li>
+      </ul>
+
+      <h3>Export</h3>
+      <p>As in “Specifications”: format, sample rate, bit depth, bitrate, channels, export directory, filename suffix, uniqueness method. Plus: normalize on extract, add fades on extract, apply varispeed to export, copy metadata (MP3/M4A), and lossless extraction for MP3 when applicable.</p>
+
+      <h3>Appearance</h3>
+      <ul>
+        <li>Waveform color, selection color, selection opacity, playhead color, scrubbing color, split point color, background, overlay/button color.</li>
+        <li>Color scheme: System (time-based), Dark, or Light (inverted).</li>
+      </ul>
+
+      <h3>Advanced (experimental &amp; behavior)</h3>
+      <ul>
+        <li><strong>Edit operations</strong> — Enable/disable copy, cut, paste, and all edit processing. When disabled, Edit menu items are dimmed.</li>
+        <li><strong>Scrubbing</strong> — Scrubbing is always available; here you may see scrubbing preview duration and trackpad/turntable options (or they’re in Playback menu).</li>
+        <li><strong>Varispeed</strong> — Enable varispeed control; then set min/max rate (e.g. 0.1×–8×).</li>
+        <li><strong>Dual Mode maximums</strong> — Max gain and max resize (semitones) for Dual Edit Mode.</li>
+        <li><strong>Selection-centered zooming</strong> — Zoom centers on selection when enabled (View menu).</li>
+        <li><strong>Selection centering during playback</strong> — When playing selection only, view can auto-center on the selection (View menu).</li>
+        <li><strong>Movement precision</strong> — Category (Frames, Seconds, Percentage) is in Edit → Movement Precision; the exact step (sample, quarter frame, 10 ms, etc.) is in Playback → Movement Precision and via ⌥1–⌥9.</li>
+        <li><strong>Paste behaviour, Fade curve, Silence operation</strong> — Set in Edit menu submenus.</li>
+      </ul>
+    </section>
+
+    <!-- MENU REFERENCE -->
+    <section id="menus" class="manual-section">
+      <h2>Menu reference</h2>
+
+      <h3>File</h3>
+      <ul>
+        <li>Open… (⌘O), Open Recent (submenu), Manage Folder Permissions…</li>
+      </ul>
+
+      <h3>Edit</h3>
+      <ul>
+        <li>Copy, Cut, Paste, Delete, Duplicate (with shortcuts).</li>
+        <li>Silence, Normalize, Invert Phase, Reverse, Fade In, Fade Out.</li>
+        <li>Dual Mode (step mode, snap to grid, audio preview, waveform preview).</li>
+        <li>Movement Precision (Frames, Seconds, Percentage).</li>
+        <li>Paste Behaviour (at playhead, at selection, over selection, over at playhead, replace selection).</li>
+        <li>Fade Curve (linear, logarithmic, exponential, S-curve).</li>
+        <li>Silence Operation (replace selection with silence, insert silence before selection).</li>
+        <li>Undo / Redo.</li>
+      </ul>
+
+      <h3>View</h3>
+      <ul>
+        <li>Zoom (In, Out, Reset, Zoom to selection).</li>
+        <li>Pan (Left, Right).</li>
+        <li>Viewport Zoom (In, Out).</li>
+        <li>Toggle Edit Operations (⌘⌥E).</li>
+        <li>Show/Hide Mini Waveform (⌘⇧M).</li>
+        <li>Waveform View — Left/Right channels or Mid/Side (stereo only).</li>
+        <li>Appearance (System, Dark, Light).</li>
+        <li>Selection-centered zooming, Selection centering during playback.</li>
+      </ul>
+
+      <h3>Playback</h3>
+      <ul>
+        <li>Play/Pause, Play selection only, Stop, Stop and seek to start.</li>
+        <li>Navigate (Seek start/end, Seek backward/forward, Cycle precision, Seek to selection start/end).</li>
+        <li>Movement Precision (Sample, Quarter/Half/Full frame, 10/50/100 ms, 0.5/1 s) — ⌥1–⌥9.</li>
+        <li>Selection (Set start/end at playhead, Jump to start field, Move start/end, Dual Edit Mode, Loop).</li>
+        <li>Playhead follow (⌘⇧F), Scrub mode (⌘J), Turntable mode.</li>
+        <li>Channels (Left, Right, Both, Mid, Side) — ⇧1/2/0/3/4.</li>
+      </ul>
+
+      <h3>Selection</h3>
+      <ul>
+        <li>Select All (⌘A), Clear selection (Escape, ⌘⇧A), Lock/Unlock (⌘⇧L).</li>
+        <li>Snap to zero crossings (⌘⌥Z).</li>
+        <li>Extract selection (⌘E), Extract and open (⌘⇧E).</li>
+        <li>Split at playhead (⌘P), Split by longest segment, Redistribute splits, Clear all splits (⌘⇧P).</li>
+      </ul>
+
+      <h3>Help</h3>
+      <ul>
+        <li>Keyboard Shortcuts (⌘?) — Opens the shortcut reference window.</li>
+      </ul>
+    </section>
+
+    <!-- SHORTCUT LIBRARY -->
+    <section id="shortcuts" class="manual-section">
+      <h2>Shortcut library</h2>
+      <p>Below is a compact reference. Some items require experimental features (Edit Operations, Scrubbing, Varispeed, Dual Mode) to be enabled in Settings.</p>
+
+      <div class="manual-table-wrap">
+        <table class="manual-table">
+          <thead>
+            <tr><th>Shortcut</th><th>Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>⌘O</td><td>Open audio file</td></tr>
+            <tr><td>Space</td><td>Play / Pause</td></tr>
+            <tr><td>⌥Space</td><td>Play selection only</td></tr>
+            <tr><td>⌘.</td><td>Stop</td></tr>
+            <tr><td>Enter</td><td>Stop and seek to start</td></tr>
+            <tr><td>Home</td><td>Seek to start</td></tr>
+            <tr><td>End</td><td>Seek to end</td></tr>
+            <tr><td>← / →</td><td>Seek backward / forward (movement precision)</td></tr>
+            <tr><td>⌥← / ⌥→</td><td>Cycle movement precision backward / forward</td></tr>
+            <tr><td>⌘⇧F</td><td>Toggle playhead follow</td></tr>
+            <tr><td>⌘J</td><td>Toggle scrub mode</td></tr>
+            <tr><td>⌥1…⌥9</td><td>Set movement precision (sample, frames, 10/50/100 ms, 0.5/1 s)</td></tr>
+            <tr><td>⌘A</td><td>Select all</td></tr>
+            <tr><td>Escape / ⌘⇧A</td><td>Clear selection</td></tr>
+            <tr><td>⌘1 / ⌘2</td><td>Set selection start / end at playhead</td></tr>
+            <tr><td>⌘⌥1</td><td>Jump to start time field</td></tr>
+            <tr><td>[ / ]</td><td>Seek to selection start / end</td></tr>
+            <tr><td>⌘L</td><td>Toggle loop</td></tr>
+            <tr><td>⌘⇧L</td><td>Lock / unlock selection</td></tr>
+            <tr><td>⌘⌥Z</td><td>Snap selection to zero crossings</td></tr>
+            <tr><td>⌘E</td><td>Extract selection</td></tr>
+            <tr><td>⌘⇧E</td><td>Extract selection and open</td></tr>
+            <tr><td>⌘⇧← / ⌘⇧→</td><td>Move selection start left / right</td></tr>
+            <tr><td>⌘⌥← / ⌘⌥→</td><td>Move selection end left / right</td></tr>
+            <tr><td>⌘⌥V / ⌘⌥↑/↓</td><td>Enter / exit Dual Edit Mode</td></tr>
+            <tr><td>Return / Escape</td><td>Commit / cancel Dual Edit (in mode)</td></tr>
+            <tr><td>⌘P</td><td>Add split at playhead</td></tr>
+            <tr><td>⌘⇧P</td><td>Clear all splits</td></tr>
+            <tr><td>⌘+ / ⌘−</td><td>Zoom in / out</td></tr>
+            <tr><td>⌘0</td><td>Reset zoom</td></tr>
+            <tr><td>⌘\</td><td>Zoom to selection</td></tr>
+            <tr><td>⇧← / ⇧→</td><td>Pan viewport left / right</td></tr>
+            <tr><td>⇧↑ / ⇧↓</td><td>Zoom in / out (viewport center)</td></tr>
+            <tr><td>⌘⇧M</td><td>Show / hide mini waveform</td></tr>
+            <tr><td>⌘⌥L / ⌘⌥S</td><td>Left/Right or Mid/Side waveform view (stereo)</td></tr>
+            <tr><td>⇧1 / ⇧2 / ⇧0</td><td>Preview Left / Right / Both channels</td></tr>
+            <tr><td>⇧3 / ⇧4</td><td>Preview Mid / Side</td></tr>
+            <tr><td>⌘⌥E</td><td>Toggle edit operations panel</td></tr>
+            <tr><td>⌘C / ⌘X / ⌘V</td><td>Copy / Cut / Paste</td></tr>
+            <tr><td>⌘⌫ / ⌘D</td><td>Delete selection / Duplicate selection</td></tr>
+            <tr><td>⌘⇧S</td><td>Silence selection</td></tr>
+            <tr><td>⌘⇧N / ⌘⇧I / ⌘⇧R</td><td>Normalize / Invert phase / Reverse</td></tr>
+            <tr><td>⌘⇧G / ⌘⇧H</td><td>Fade in / Fade out</td></tr>
+            <tr><td>⌘Z / ⌘⇧Z</td><td>Undo / Redo</td></tr>
+            <tr><td>⌘,</td><td>Settings</td></tr>
+            <tr><td>⌘?</td><td>Keyboard shortcuts window</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="mono footer-text">Parlante - Audio Waveform Editor · Manual</p>
+      <p class="footer-links">
+        <a href="index.html">App</a> ·
+        <a href="privacy.html">Privacy</a>
+      </p>
+    </footer>
+  </main>
+</body>
+</html>
