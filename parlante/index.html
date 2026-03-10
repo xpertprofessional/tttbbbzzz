@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parlante - Audio Waveform Editor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo">Parlante - Audio Waveform Editor</a>
+      <div class="nav-links">
+        <a href="index.html">App</a>
+        <a href="manual.html">Manual</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <h1 class="hero-title">Parlante - Audio Waveform Editor</h1>
+      <p class="hero-tagline">Edit audio with precision. Native macOS. Clean, fast, local.</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">What it does</h2>
+      <p class="body-text">
+        A native macOS app for editing audio files. Load WAV, MP3, AIFF, M4A, FLAC, or extract audio from video.
+        View a high-performance tile-based waveform, make selections, and apply edits. All processing happens on your Mac; no data is sent to external servers.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Features</h2>
+      <ul class="feature-list">
+        <li><span class="mono">Open &amp; merge</span> — Open single or multiple files; merge tracks into one.</li>
+        <li><span class="mono">Waveform view</span> — Zoom and pan with a tile-based Metal-rendered waveform. Customize waveform, selection, and playhead colors.</li>
+        <li><span class="mono">Selection</span> — Click-drag to select a range. Loop playback over selection. Clear with Escape or shortcut.</li>
+        <li><span class="mono">Playback</span> — Play/pause, play selection only, jump to start/end. Scrub by dragging on the waveform (turntable-style).</li>
+        <li><span class="mono">Varispeed</span> — Temporary pitch/speed change for playback (e.g. 0.5×–2×) without altering the file.</li>
+        <li><span class="mono">Edit operations</span> — Copy, cut, paste, delete, duplicate, trim to selection, silence, fade in/out, normalize, reverse. Optional paste/silence behavior (replace vs insert) and fade curves.</li>
+        <li><span class="mono">Extract</span> — Export the current selection as a new file. Command-click to extract and open in a new window.</li>
+        <li><span class="mono">Export</span> — Save as WAV (8–32 bit) or MP3. Choose sample rate and bit depth where applicable.</li>
+        <li><span class="mono">Keyboard shortcuts</span> — Full set of shortcuts for transport, selection, and edits (see in-app Keyboard Shortcuts).</li>
+        <li><span class="mono">Preferences</span> — Last used folders, export defaults, waveform appearance, and other options.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Technical</h2>
+      <p class="body-text">
+        Built with SwiftUI and AVFoundation. Waveform rendering uses Metal (GPU) and a tile-based cache for smooth zoom and pan. Supports light and dark mode and respects system appearance.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p class="mono footer-text">Parlante - Audio Waveform Editor · macOS</p>
+      <p class="footer-links"><a href="manual.html">Manual</a> · <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+  </main>
+</body>
+</html>
