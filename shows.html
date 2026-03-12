@@ -58,9 +58,6 @@
                     newCell.textContent = cell;
                 });
             });
-
-            const date = new Date(data.savedAt).toLocaleDateString();
-            document.getElementById('data-source').textContent = `last updated ${date}`;
         }
 
         fetchData();
